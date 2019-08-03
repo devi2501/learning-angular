@@ -1,0 +1,191 @@
+<div>
+    <div class="example-container">
+        <div class="case-search-div">
+            <!-- <app-user-banner-menu></app-user-banner-menu> -->
+            <div class="search-filter">
+                <table class="case-search-table w-100">
+                    <!-- Contract Number -->
+                    <td class='w-15'>
+                        <form class="case-search-form" [formGroup] ="caseSearchForm" >
+                            <mat-form-field class="case-search-contractid">
+                                <input type="text" matInput placeholder="Contract ID" value="" formControlName="contactNo">
+                                <!-- <span *ngIf="contactNoFilter.invalid && contactNoFilter.dirty">Enter valid text</span> -->
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-requestid">
+                                <input type="text"  matInput placeholder="Request ID" value="" formControlName='requestID'>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-names">
+                                <input type="text"  matInput placeholder="Owner name" value="" formControlName='ownerName'>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-ssn">
+                                <input type="text"  matInput placeholder="Owner SSN" value="" formControlName='ownerSSN'>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-names">
+                                <input matInput placeholder="Annuitant Name" value="" formControlName='annuitantName'>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-ssn">
+                                <input matInput placeholder="Annuitant SSN" value="" formControlName='annuitantSSN'>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-names">
+                                <input matInput placeholder="Producer Name" value="" formControlName='producerName'>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-ssn">
+                                <input matInput placeholder="Producer SSN" value="" formControlName='producerSSN'>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-names">
+                                <input matInput placeholder="Producer Firm" value="" formControlName='producerFirm'>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-date">
+                                <input matInput [matDatepicker]="picker" placeholder="Setup Date" formControlName='setupDate'>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-select">
+                                <mat-label>Status</mat-label>
+                                <mat-select formControlName='statusSelect'>
+                                    <mat-option *ngFor="let s of suitabilityStatuses" [value]="s.key">{{ s.value}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-select">
+                                <mat-label>Principal</mat-label>
+                                <mat-select formControlName='principalSelect'>
+                                    <mat-option value="">Select</mat-option>
+                                    <mat-option *ngFor="let principal of principalStatusList" [value]="principal.key">
+                                        {{principal.value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-select">
+                                <mat-label>Case Indicator</mat-label>
+                                <mat-select formControlName='caseindicatorSelect'>
+                                    <mat-option value="">Select</mat-option>
+                                    <mat-option *ngFor="let caseIndicator of caseIndicatorList" [value]="caseIndicator.key">
+                                        {{caseIndicator.value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field class="case-search-select">
+                                <mat-label>Watch List</mat-label>
+                                <mat-select formControlName='watchlistSelect'>
+                                    <mat-option value="">Select</mat-option>
+                                    <mat-option *ngFor="let watchList of watchListList" [value]="watchList.key">
+                                        {{watchList.value}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <button mat-raised-button (click)='sumbitSearchFilter("submitsearch")' mat-button color="basic" type="button" class='non-primary-button'>Search</button>
+                            <button mat-raised-button (click)='clearFilter()' mat-button color="basic" type="reset" class='non-primary-button'>Clear</button>
+
+                        </form>
+                    </td>
+                </table>
+            </div>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="contactNo">
+                        <th mat-header-cell *matHeaderCellDef> Contract Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.contactNo}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="requestID">
+                        <th mat-header-cell *matHeaderCellDef> Request ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.requestID}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="ownerName">
+                        <th mat-header-cell *matHeaderCellDef> Owner name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ownerName}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="ownerSSN">
+                        <th mat-header-cell *matHeaderCellDef> Owner SSN </th>
+                        <td mat-cell *matCellDef="let element"> {{element.ownerSSN}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="annuitantName">
+                        <th mat-header-cell *matHeaderCellDef> Annuitant Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.annuitantName}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="annuitantSSN">
+                        <th mat-header-cell *matHeaderCellDef> Annuitant SSN </th>
+                        <td mat-cell *matCellDef="let element"> {{element.annuitantSSN}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="producerName">
+                        <th mat-header-cell *matHeaderCellDef> Producer Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.producerName}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="producerSSN">
+                        <th mat-header-cell *matHeaderCellDef> Producer SSN </th>
+                        <td mat-cell *matCellDef="let element"> {{element.producerSSN}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="producerFirm">
+                        <th mat-header-cell *matHeaderCellDef> Producer Firm </th>
+                        <td mat-cell *matCellDef="let element"> {{element.producerFirm}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="setupDate">
+                        <th mat-header-cell *matHeaderCellDef> Setup Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.setupDate}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="statusSelect">
+                        <th mat-header-cell *matHeaderCellDef> Status Select </th>
+                        <td mat-cell *matCellDef="let element"> {{element.statusSelect}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="principalSelect">
+                        <th mat-header-cell *matHeaderCellDef> principal Select </th>
+                        <td mat-cell *matCellDef="let element"> {{element.principleSelect}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="caseindicatorSelect">
+                        <th mat-header-cell *matHeaderCellDef> Case Indicator Select </th>
+                        <td mat-cell *matCellDef="let element"> {{element.caseindicatorSelect}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="watchlistSelect">
+                        <th mat-header-cell *matHeaderCellDef> Watch List Select </th>
+                        <td mat-cell *matCellDef="let element"> {{element.watchlistSelect}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

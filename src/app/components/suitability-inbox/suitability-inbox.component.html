@@ -6,46 +6,94 @@
                 <table class="case-search-table w-100">
                     <!-- Contract Number -->
                     <td class='w-15'>
-                        <form class="case-search-form" [formGroup] ="caseSearchForm" >
+                        <form class="case-search-form" [formGroup]="caseSearchForm">
                             <mat-form-field class="case-search-contractid">
-                                <input type="text" matInput placeholder="Contract ID" value="" formControlName="contactNo">
-                                <!-- <span *ngIf="contactNoFilter.invalid && contactNoFilter.dirty">Enter valid text</span> -->
+                                <input type="text" matInput placeholder="Contract ID" value=""
+                                    formControlName="contactNo">
+                                <mat-error>
+                                    <span
+                                        *ngIf="caseSearchForm.get('contactNo').invalid && caseSearchForm.get('contactNo').dirty">Please
+                                        enter valid contactNo !!!</span>
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="case-search-requestid">
-                                <input type="text"  matInput placeholder="Request ID" value="" formControlName='requestID'>
+                                <input type="text" matInput placeholder="Request ID" value=""
+                                    formControlName='requestID'>
+                                <mat-error>
+                                    <span class="alert alert-danger"
+                                        *ngIf="caseSearchForm.get('requestID').invalid && caseSearchForm.get('requestID').dirty">Please
+                                        enter valid requestId !!!</span>
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="case-search-names">
-                                <input type="text"  matInput placeholder="Owner name" value="" formControlName='ownerName'>
+                                <input type="text" matInput placeholder="Owner name" value=""
+                                    formControlName='ownerName'>
+                                <mat-error>
+                                    <span
+                                        *ngIf="caseSearchForm.get('ownerName').invalid && caseSearchForm.get('ownerName').dirty">Please
+                                        enter valid ownerName !!!</span>
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="case-search-ssn">
-                                <input type="text"  matInput placeholder="Owner SSN" value="" formControlName='ownerSSN'>
+                                <input type="text" matInput placeholder="Owner SSN" value="" formControlName='ownerSSN'>
+                                <mat-error>
+                                    <span
+                                        *ngIf="caseSearchForm.get('ownerSSN').invalid && caseSearchForm.get('ownerSSN').dirty">Please
+                                        enter valid ownerSSN !!!</span>
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="case-search-names">
                                 <input matInput placeholder="Annuitant Name" value="" formControlName='annuitantName'>
+                                <mat-error>
+                                    <span
+                                        *ngIf="caseSearchForm.get('annuitantName').invalid && caseSearchForm.get('annuitantName').dirty">Please
+                                        enter valid annuitantName !!!</span>
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="case-search-ssn">
                                 <input matInput placeholder="Annuitant SSN" value="" formControlName='annuitantSSN'>
+                                <mat-error>
+                                    <span
+                                        *ngIf="caseSearchForm.get('annuitantSSN').invalid && caseSearchForm.get('annuitantSSN').dirty">Please
+                                        enter valid annuitantSSN !!!</span>
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="case-search-names">
                                 <input matInput placeholder="Producer Name" value="" formControlName='producerName'>
+                                <mat-error>
+                                    <span
+                                        *ngIf="caseSearchForm.get('producerName').invalid && caseSearchForm.get('producerName').dirty">Please
+                                        enter valid producerName !!!</span>
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="case-search-ssn">
                                 <input matInput placeholder="Producer SSN" value="" formControlName='producerSSN'>
+                                <mat-error>
+                                    <span
+                                        *ngIf="caseSearchForm.get('producerSSN').invalid && caseSearchForm.get('producerSSN').dirty">Please
+                                        enter valid producerSSN !!!</span>
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="case-search-names">
                                 <input matInput placeholder="Producer Firm" value="" formControlName='producerFirm'>
+                                <mat-error>
+                                    <span
+                                        *ngIf="caseSearchForm.get('producerFirm').invalid && caseSearchForm.get('producerFirm').dirty">Please
+                                        enter valid producerFirm !!!</span>
+                                </mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="case-search-date">
-                                <input matInput [matDatepicker]="picker" placeholder="Setup Date" formControlName='setupDate'>
+                                <input matInput [matDatepicker]="picker" placeholder="Setup Date"
+                                    formControlName='setupDate'>
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
@@ -53,7 +101,8 @@
                             <mat-form-field class="case-search-select">
                                 <mat-label>Status</mat-label>
                                 <mat-select formControlName='statusSelect'>
-                                    <mat-option *ngFor="let s of suitabilityStatuses" [value]="s.key">{{ s.value}}</mat-option>
+                                    <mat-option *ngFor="let s of suitabilityStatuses" [value]="s.key">{{ s.value}}
+                                    </mat-option>
                                 </mat-select>
                             </mat-form-field>
 
@@ -71,7 +120,8 @@
                                 <mat-label>Case Indicator</mat-label>
                                 <mat-select formControlName='caseindicatorSelect'>
                                     <mat-option value="">Select</mat-option>
-                                    <mat-option *ngFor="let caseIndicator of caseIndicatorList" [value]="caseIndicator.key">
+                                    <mat-option *ngFor="let caseIndicator of caseIndicatorList"
+                                        [value]="caseIndicator.key">
                                         {{caseIndicator.value}}
                                     </mat-option>
                                 </mat-select>
@@ -86,14 +136,21 @@
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
+                            <div (click)='sumbitSearchFilter()'><span><i class="fa fa-filter fa-lg"
+                                        aria-hidden="true"></i></span></div>
+                            <span (click)='clearFilter()' class="fa-stack"><i class="fa fa-filter fa-lg"
+                                    aria-hidden="true"><i class="fa fa-remove font-size" aria-hidden="true"></i></i></span>
 
-                            <button mat-raised-button (click)='sumbitSearchFilter("submitsearch")' mat-button color="basic" type="button" class='non-primary-button'>Search</button>
-                            <button mat-raised-button (click)='clearFilter()' mat-button color="basic" type="reset" class='non-primary-button'>Clear</button>
+                            <!-- <button mat-raised-button (click)='clearFilter()' mat-button color="basic" type="reset" class='non-primary-button'>Clear</button> -->
 
                         </form>
                     </td>
                 </table>
             </div>
+            <div class="overlay" *ngIf= "loading">
+                <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+                </mat-progress-spinner>
+              </div>
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="dataSource">
 
@@ -181,10 +238,16 @@
                         <td mat-cell *matCellDef="let element"> {{element.watchlistSelect}} </td>
                     </ng-container>
 
+                    <ng-container matColumnDef="history">
+                        <th mat-header-cell *matHeaderCellDef> History </th>
+                        <td mat-cell *matCellDef="let element"><button mat-button>Open</button>
+                        </td>
+                    </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
-                <mat-paginator [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 100]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 100]"
+                    showFirstLastButtons></mat-paginator>
             </div>
         </div>
     </div>

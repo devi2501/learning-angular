@@ -32,6 +32,9 @@ export class SuitabilityInboxComponent implements OnInit {
   mode = 'indeterminate';
   value = 50;
   loading :boolean = false;
+// To highlight the row in a table
+ selectedRowIndex: number = -1;
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   caseSearchForm = this.fb.group({
@@ -105,4 +108,7 @@ export class SuitabilityInboxComponent implements OnInit {
   clearFilter(){
     this.caseSearchForm.reset();
   }
+  highlight(row){
+    this.selectedRowIndex = row.contactNo;
+}
 }

@@ -244,7 +244,8 @@
                         </td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.contactNo}"
+                    (click)="highlight(row)"></tr>
                 </table>
                 <mat-paginator [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 100]"
                     showFirstLastButtons></mat-paginator>
